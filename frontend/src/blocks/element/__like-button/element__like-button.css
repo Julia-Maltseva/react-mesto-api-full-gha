@@ -1,0 +1,22 @@
+.element__like-button {
+  min-width: 22px;
+  height: 19px;
+  background-image: url(../../../images/Group.svg);
+  border: none;
+  background-color: transparent;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-self: center;
+  padding: 0;
+  z-index: 2;
+}
+
+.element__like-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.element__like-button:active {
+  background-image: url(../../../images/Union.svg);
+}
