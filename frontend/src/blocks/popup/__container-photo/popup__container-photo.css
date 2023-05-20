@@ -1,8 +1,0 @@
-.popup__container-photo {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: auto;
-  max-width: 816px;
-}
