@@ -1,0 +1,13 @@
+.popup__form-input {
+  min-height: 28px;
+}
+
+.popup__form-input:last-of-type {
+  min-height: 0px;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__form-input {
+    min-height: 15px;
+  }
+}

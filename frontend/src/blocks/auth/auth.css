@@ -1,0 +1,8 @@
+.auth {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  max-width: 358px;
+}
