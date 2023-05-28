@@ -22,7 +22,7 @@ class Api {
     getCards() {
       return fetch(`${this._baseUrl}/cards`, {
         method: "GET",
-        headers: this._headers  
+        headers: this._headers
       }).then(this.checkResponse)
     }
   
@@ -93,11 +93,11 @@ class Api {
   } 
 
   const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-58',
+    baseUrl: 'https://api.mestoappjm.nomoredomains.monster',
     headers: {
-      authorization: 'cfd8eb7d-45c3-47c6-a1d4-da353d480438',
+      authorization: `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
-    }  
+    }
   });
   
   export default api;

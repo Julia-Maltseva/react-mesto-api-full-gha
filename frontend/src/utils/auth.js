@@ -32,6 +32,9 @@ class Auth {
       body: JSON.stringify({email, password})
     })
     .then(this.checkResponse)
+    .then((token) => {
+      localStorage.setItem('jwt', token)
+    })
     .catch((err) => console.log(err));
   }
 
@@ -40,13 +43,19 @@ class Auth {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `Bearer ${token}`,
       }  
     })
     .then(this.checkResponse)
   }
 }
 
-const auth = new Auth("https://auth.nomoreparties.co")
+const auth = new Auth({
+  baseUrl: 'https://api.mestoappjm.nomoredomains.monster',
+  headers: {
+    authorization: `Bearer ${localStorage.getItem('token')}`,
+    'Content-Type': 'application/json'
+  }
+})
 
 export default auth;

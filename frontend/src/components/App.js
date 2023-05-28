@@ -124,7 +124,9 @@ function App() {
           setUserEmail(res.data.email);
           navigate('/mesto');
         })
-        .catch((err) => {console.log(err)})
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }, [])
 
@@ -132,7 +134,7 @@ function App() {
     auth.authorize(userInfo.email, userInfo.password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem("jwt", res.token);
+          localStorage.setItem('jwt', res.token);
           handleLogIn();
           setUserEmail(userInfo.email);
           navigate('/mesto', {replace: true})

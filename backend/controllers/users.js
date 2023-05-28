@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const ErrorCode = require('../error');
 const Conflict = require('../errors/ConflictError');
@@ -121,16 +123,18 @@ const login = (req, res, next) => {
   const { email, password } = req.body;
   return User
     .findOne({ email }).select('+password')
-    .orFail(() => next(new Unauthorized('Неправильный email или пароль')))
-    .then((user) => bcrypt.compare(password, user.password).then((matched) => {
-      if (matched) {
-        return user;
-      }
-      return next(new Unauthorized('Неправильный email или пароль'));
-    }))
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
-      res.send({ token });
+      if (!user) {
+        return next(new Unauthorized('Неправильный email или пароль'));
+      }
+      return bcrypt.compare(password, user.password)
+        .then((matched) => {
+          if (!matched) {
+            return next(new Unauthorized('Неправильный email или пароль'));
+          }
+          const token = jwt.sign({ id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+          return res.send({ token });
+        });
     })
     .catch((error) => {
       if (error.name === 'ValidationError') {
