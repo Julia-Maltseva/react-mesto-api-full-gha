@@ -1,7 +1,8 @@
 
 class Auth {
-  constructor(baseUrl) {
+  constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   checkResponse(res) {
@@ -15,9 +16,7 @@ class Auth {
   checkIn(email, password) {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({email, password})
     })
     .then(this.checkResponse)
@@ -26,9 +25,7 @@ class Auth {
   authorize(email, password) {
     return fetch(`${this._baseUrl}/signin`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: this._headers,
       body: JSON.stringify({email, password})
     })
     .then(this.checkResponse)
@@ -42,16 +39,16 @@ class Auth {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      }  
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
     })
     .then(this.checkResponse)
   }
 }
 
 const auth = new Auth({
-  baseUrl: 'https://api.mestoappjm.nomoredomains.monster',
+  baseUrl: 'http://localhost:3000',
   headers: {
     authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'

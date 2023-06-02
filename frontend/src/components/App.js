@@ -116,7 +116,7 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     if (token) {
       auth.checkToken(token)
         .then((res) => {
@@ -128,13 +128,13 @@ function App() {
           console.log(err)
         })
     }
-  }, [])
+  }, [navigate])
 
   function handleSignIn(userInfo) {
     auth.authorize(userInfo.email, userInfo.password)
       .then((res) => {
         if (res.token) {
-          localStorage.setItem('jwt', res.token);
+          localStorage.setItem('token', res.token);
           handleLogIn();
           setUserEmail(userInfo.email);
           navigate('/mesto', {replace: true})
@@ -150,6 +150,7 @@ function App() {
     auth.checkIn(email, password)
       .then(() => {
         setIsSuccessNotice(true);
+        navigate('/sign-in');
       })
       .catch((err) => {
         console.log(err);
