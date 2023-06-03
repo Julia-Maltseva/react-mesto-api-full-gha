@@ -118,10 +118,10 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      auth.checkToken(token)
+      auth.checkToken()
         .then((res) => {
           handleLogIn();
-          setUserEmail(res.data.email);
+          setUserEmail(res.email);
           navigate('/mesto');
         })
         .catch((err) => {

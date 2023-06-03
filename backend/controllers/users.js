@@ -149,7 +149,7 @@ const getUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (user) {
-        res.status(ErrorCode.STATUS_OK).send({ data: user });
+        res.status(ErrorCode.STATUS_OK).send(user);
       } else {
         next(new NotFound('Запрашиваемый пользователь не найден'));
       }
