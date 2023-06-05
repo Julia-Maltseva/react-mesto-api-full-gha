@@ -118,7 +118,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      auth.checkToken()
+      auth.checkToken(token)
         .then((res) => {
           handleLogIn();
           setUserEmail(res.email);
@@ -128,7 +128,7 @@ function App() {
           console.log(err)
         })
     }
-  }, [navigate])
+  }, [])
 
   function handleSignIn(userInfo) {
     auth.authorize(userInfo.email, userInfo.password)

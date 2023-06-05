@@ -1,6 +1,5 @@
 class Api {
-    constructor({ baseUrl, headers }) {
-      this._headers = headers;
+    constructor({ baseUrl }) {
       this._baseUrl = baseUrl;
     }
   
@@ -13,23 +12,32 @@ class Api {
     }
   
     getProfile() {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/users/me`, {
         method: "GET",
-        headers: this._headers
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }).then(this.checkResponse)
     }
   
     getCards() {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/cards`, {
         method: "GET",
-        headers: this._headers
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
       }).then(this.checkResponse)
     }
   
     editProfile({name, about}) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/users/me`, {
         method: "PATCH",  
-        headers: this._headers,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           name,
           about
@@ -38,9 +46,12 @@ class Api {
     }
   
     addCard(name, link) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/cards`, {
         method: "POST",  
-        headers: this._headers,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           name,
           link
@@ -49,26 +60,35 @@ class Api {
     }
   
     deleteCard(id) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/cards/${id}`, {
         method: "DELETE",  
-        headers: this._headers
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         })
         .then(this.checkResponse)
     }
   
     deleteLike(id) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "DELETE",  
-        headers: this._headers
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         })
         .then(this.checkResponse)
       .catch(console.log)
     }
   
     addLike(id) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/cards/${id}/likes`, {
         method: "PUT",  
-        headers: this._headers
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         })
         .then(this.checkResponse)
     }
@@ -82,9 +102,12 @@ class Api {
     }
   
     addAvatar(avatar) {
+      const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",  
-        headers: this._headers,
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           avatar
         })
