@@ -39,7 +39,7 @@ function App() {
         setCards(cardList)
       })
       .catch((err) => console.log(err))
-  }, [])
+  }, [loggedIn])
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);

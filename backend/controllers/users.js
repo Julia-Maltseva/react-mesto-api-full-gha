@@ -132,7 +132,7 @@ const login = (req, res, next) => {
           if (!matched) {
             return next(new Unauthorized('Неправильный email или пароль'));
           }
-          const token = jwt.sign({ id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+          const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
           return res.send({ token });
         });
     })
