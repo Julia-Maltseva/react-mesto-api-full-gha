@@ -33,7 +33,7 @@ class Api {
       }).then(this.checkResponse)
     }
   
-    editProfile({name, about}) {
+    editProfile(data) {
       const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/users/me`, {
         method: "PATCH",  
@@ -41,10 +41,7 @@ class Api {
           authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          name,
-          about
-        })
+        body: JSON.stringify(data)
       }).then(this.checkResponse)
     }
   
@@ -108,7 +105,7 @@ class Api {
       }
     }
   
-    addAvatar(avatar) {
+    addAvatar(data) {
       const token = localStorage.getItem('token');
       return fetch(`${this._baseUrl}/users/me/avatar`, {
         method: "PATCH",  
@@ -116,9 +113,7 @@ class Api {
           authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          avatar
-        })
+        body: JSON.stringify(data)
       }).then(this.checkResponse)
     }
   } 

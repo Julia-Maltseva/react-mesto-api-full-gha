@@ -81,7 +81,7 @@ function App() {
   }
 
   function handleUpdateUser(data) {
-    api.editProfile({name: data.name, about: data.about})
+    api.editProfile(data)
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups();
@@ -90,7 +90,7 @@ function App() {
   }
 
   function handleUpdateAvatar(data) {
-    api.addAvatar(data.avatar)
+    api.addAvatar(data)
       .then((res) => {
         setCurrentUser(res)
         closeAllPopups();
