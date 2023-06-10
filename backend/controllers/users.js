@@ -82,7 +82,7 @@ const updateProfile = (req, res, next) => {
   )
     .then((user) => {
       if (user) {
-        res.status(ErrorCode.STATUS_OK).send({ name: user.name, about: user.about });
+        res.status(ErrorCode.STATUS_OK).send(user);
       } else {
         next(new NotFound('Запрашиваемый пользователь не найден'));
       }
@@ -105,7 +105,7 @@ const updateAvatar = (req, res, next) => {
   )
     .then((user) => {
       if (user) {
-        res.status(ErrorCode.STATUS_OK).send({ avatar: user.avatar });
+        res.status(ErrorCode.STATUS_OK).send(user);
       } else {
         next(new NotFound('Запрашиваемый пользователь не найден'));
       }
