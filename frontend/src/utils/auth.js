@@ -45,10 +45,10 @@ class Auth {
 
 const auth = new Auth({
   baseUrl: 'https://api.mestoappjm.nomoredomains.monster',
-  /*headers: {
+  headers: {
     authorization: `Bearer ${localStorage.getItem('token')}`,
     'Content-Type': 'application/json'
-  }*/
+  }
 })
 
 export default auth;

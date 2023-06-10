@@ -120,10 +120,10 @@ class Api {
 
   const api = new Api({
     baseUrl: 'https://api.mestoappjm.nomoredomains.monster',
-    /*headers: {
+    headers: {
       authorization: `Bearer ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json'
-    }*/
+    }
   });
   
   export default api;
