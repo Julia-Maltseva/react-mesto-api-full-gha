@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.106.125
+IP 51.250.106.125
 
 Frontend https://mestoappjm.nomoredomains.monster
 
