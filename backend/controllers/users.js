@@ -25,7 +25,7 @@ const createUser = async (req, res, next) => {
     email,
     password: hash,
   })
-    .then((user) => res.status(ErrorCode.STATUS_OK).send({
+    .then((user) => res.status(ErrorCode.CREATED).send({
       data: {
         name: user.name,
         about: user.about,

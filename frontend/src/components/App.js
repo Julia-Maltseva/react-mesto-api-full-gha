@@ -113,6 +113,8 @@ function App() {
 
   function handleLogOut() {
     setLoggedIn(false);
+    localStorage.removeItem('token');
+    navigate('/');
   }
 
   useEffect(() => {
